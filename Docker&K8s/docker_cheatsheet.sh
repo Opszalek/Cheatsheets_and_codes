@@ -31,7 +31,7 @@ docker run --restart=always -d <image-name> # Run a container with a restart pol
 docker run --read-only -d <image-name>      # Run a container with a read-only filesystem
 docker save -o <path-for-tar>/<image-name>.tar <image-name> # Save an image to a tar archive
 docker load -i <path-for-tar>/<image-name>.tar # Load an image from a tar archive
-docker scan <image-name>  					# Scan the Docker image for vulnerabilities
+docker scan <image-name>  	            # Scan the Docker image for vulnerabilities
 
 ##############################################################################
 # DOCKER COMPOSE
@@ -57,14 +57,14 @@ docker compose top                           # Display the running processes of 
 # DOCKER SWARM
 ##############################################################################
 
-docker swarm init                          	 	    # Initialize a swarm
-docker node ls                              		# List nodes in the swarm
+docker swarm init                          	    # Initialize a swarm
+docker node ls                              	    # List nodes in the swarm
 docker service create --name <service-name> <image> # Create a service
-docker service ls                           		# List services
+docker service ls                           	    # List services
 docker service ps                                   # List the tasks
-docker service scale <service-name>=<replicas> 		# Scale a service
-docker service rm <service-name>            		# Remove a service
-docker service update <options> <service-name> 		# Update Service options
+docker service scale <service-name>=<replicas> 	    # Scale a service
+docker service rm <service-name>            	    # Remove a service
+docker service update <options> <service-name> 	    # Update Service options
 docker service inspect --pretty <service-name>      # Display detailed information Service
 docker node inspect <manager-node-name> --format "{{ .ManagerStatus.Reachability }}" # Inspect the reachability of a manager node
 docker node inspect <node-name> --format "{{ .Status.State }}" # Inspect the current state of a node
@@ -80,14 +80,14 @@ docker service logs <service-name>                  # Fetch the logs of a servic
 # DOCKER NETWORKS
 ##############################################################################
 
-docker network ls                           # List networks
-docker network create --driver <driver> <network-name> # Create a network
-docker network inspect <network-name>       # Inspect a network
-docker network rm <network-name>            # Remove a network
-docker network connect <network-name> <container-name> # Connect a container to a network
+docker network ls                           	          # List networks
+docker network create --driver <driver> <network-name>    # Create a network
+docker network inspect <network-name>       	    	  # Inspect a network
+docker network rm <network-name>            	    	  # Remove a network
+docker network connect <network-name> <container-name>    # Connect a container to a network
 docker network disconnect <network-name> <container-name> # Disconnect a container from a network
 docker container run -d --name <container-name> --network <network-name> <image> # Starts container with network
-docker run --network host <image-name>		# Run container with host network
+docker run --network host <image-name>		    	  # Run container with host network
 
 
 ##############################################################################

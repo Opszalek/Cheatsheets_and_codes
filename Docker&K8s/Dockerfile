@@ -1,10 +1,19 @@
+#Usage
+#docker build -t your_image_name:your_tag .
+
+
 # Use an official Ubuntu as a parent image
 FROM ubuntu:20.04
 
+
+# Set enviroment variable
 # Set non-interactive installation mode
 ENV DEBIAN_FRONTEND=noninteractive
-
+# Set nvidia params so every container you run will have acces to graphics card (remember to install NVIDIA Container Toolkit before)
+ENV NVIDIA_VISIBLE_DEVICES=all \
+    NVIDIA_DRIVER_CAPABILITIES=graphics,${NVIDIA_DRIVER_CAPABILITIES}
 # Update apt packages and install software
+# It is good habbit to get all packages in one command because you are updading just before downloading
 RUN apt-get update && \
     apt-get install -y \
     git \
