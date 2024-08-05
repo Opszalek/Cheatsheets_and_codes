@@ -32,6 +32,7 @@ docker run --read-only -d <image-name>      # Run a container with a read-only f
 docker save -o <path-for-tar>/<image-name>.tar <image-name> # Save an image to a tar archive
 docker load -i <path-for-tar>/<image-name>.tar # Load an image from a tar archive
 docker scan <image-name>  	            # Scan the Docker image for vulnerabilities
+sudo systemctl restart docker               # Restart docker deamon
 
 ##############################################################################
 # DOCKER COMPOSE

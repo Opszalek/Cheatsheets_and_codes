@@ -9,14 +9,17 @@ FROM ubuntu:20.04
 # Set enviroment variable
 # Set non-interactive installation mode
 ENV DEBIAN_FRONTEND=noninteractive
-# Set nvidia params so every container you run will have acces to graphics card (remember to install NVIDIA Container Toolkit before)
-ENV NVIDIA_VISIBLE_DEVICES=all \
-    NVIDIA_DRIVER_CAPABILITIES=graphics,${NVIDIA_DRIVER_CAPABILITIES}
+# Set nvidia params so every container you run will have acces to graphics card (remember to install NVIDIA Container Toolkit before) and restart docker deamon after 
+#sudo systemctl restart docker
+ENV NVIDIA_VISIBLE_DEVICES ${NVIDIA_VISIBLE_DEVICES:-all}
+ENV NVIDIA_DRIVER_CAPABILITIES ${NVIDIA_DRIVER_CAPABILITIES:+$NVIDIA_DRIVER_CAPABILITIES,}graphics
+
 # Update apt packages and install software
 # It is good habbit to get all packages in one command because you are updading just before downloading
 RUN apt-get update && \
     apt-get install -y \
     git \
+    xauth \
     curl \
     vim && \
     # Clean up to reduce layer size
