@@ -1,4 +1,5 @@
 Example usage:
+
 Build image: docker build -t ubuntu-20.04:1 . 
 Run container: ./run_with_gpu.sh ubuntu-20.04:1 ubuntu20 #Stops and remove old one
 OR: ./enter_with_gpu.sh ubuntu-20.04:1 ubuntu20 #Keeps old one and enter it
