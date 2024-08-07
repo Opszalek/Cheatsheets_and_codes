@@ -3,11 +3,13 @@
 ##############################################################################
 #host ports:containter ports
 
-docker build -t image_name .                # Create image using Dockerfile from current dict
-docker run -p 4000:80 image_name            # Run image "image_name" mapping port 4000 to 80
-docker run -d -p 4000:80 image_name         # Same thing, but in detached mode
+docker build -t <image-name> .              # Create image using Dockerfile from current dict
+docker run -p 4000:80 <image-name>          # Run image "image_name" mapping port 4000 to 80
+docker run -d -p 4000:80 <image-name>       # Same thing, but in detached mode
+docker run -it --rm <container-id>          # Removes container after close
 docker exec -it <container-id> bash         # Enter a running container
 docker stop <container-id>                  # Stop a specific container
+docker stop -t <time_sec> <container-id>    # Giving <time_sec> time for container to stop
 docker ps -a                                # List all containers (running and stopped)
 docker ps                                   # List all running containers
 docker image ls                             # List Docker images
@@ -53,12 +55,14 @@ docker compose up -d --scale <service-name>=<number> # Start and scale service t
 docker compose config                        # Validate and view the docker-compose.yml file's configuration
 docker compose build                         # Build or rebuild services associated with the docker-compose.yml
 docker compose top                           # Display the running processes of containers managed by docker-compose
+docker compose -f config1.yaml -f config2.yaml # Overrides config1 with config2 
 
 ##############################################################################
 # DOCKER SWARM
 ##############################################################################
 
 docker swarm init                          	    # Initialize a swarm
+docker swarm init --advertise-addr <addr>           # Advertise addres
 docker node ls                              	    # List nodes in the swarm
 docker service create --name <service-name> <image> # Create a service
 docker service ls                           	    # List services
@@ -73,6 +77,7 @@ docker node update --label-rm <key> <node-name>     # Remove a label from a node
 docker node inspect <node-name> | grep Labels -C5   # Display labels for a node with context
 docker stack deploy -c <docker-compose.yml> <stack-name> # Deploy or update a stack using a compose file
 docker stack ls                                     # List all stacks
+docker stack ps					    # List the tasks in the stack
 docker stack rm <stack-name>                        # Remove a stack
 docker stack services <stack-name>                  # List services in a stack
 docker service logs <service-name>                  # Fetch the logs of a service

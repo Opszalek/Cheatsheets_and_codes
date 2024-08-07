@@ -15,8 +15,6 @@ Delete image: docker rmi ubuntu-20.04:1
 
 
 
-
-
 --error
 
 xauth:  /tmp/.docker.xauth not writable, changes will be ignored
